@@ -9,6 +9,7 @@ function getComputerChoice() {
     return choices[choice];
 }
 
+
 // single round game
 function playRound(playerSelection, computerSelection) {
     playerSelection.toLowerCase();
@@ -22,41 +23,44 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
+// player select through buttons
 function game(){
     let player = 0, computer = 0;
 
-    // player select through buttons
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('button').forEach(function(button) {
             button.onclick = function() {
                 const playerSelection = button.dataset.choice;
                 const computerSelection = getComputerChoice();
-                console.log(`Player: ${playerSelection}\nComputer : ${computerSelection}`)
                 const round = playRound(playerSelection, computerSelection);
 
+                // editing scores for each round
                 if (round == 1) {
                         player++;
+                        document.querySelector('#announce').innerHTML = `your ${playerSelection} beats ${computerSelection}!`
+                        document.querySelector('#player-score').innerHTML = `${player}`
                     } else if (round == -1) {
                         computer++;
+                        document.querySelector('#announce').innerHTML = `${computerSelection} beats your ${playerSelection}!`
+                        document.querySelector('#computer-score').innerHTML = `${computer}`
+                    } else {
+                        document.querySelector('#announce').innerHTML = `${computerSelection} and ${playerSelection},
+                        it is a draw`
                     }
-                console.log(player, computer);
+
+                // display final result
+                let final = document.querySelector('#final');
+                if ( player == 5 ) {
+                    final.innerHTML = "You Win :) !";
+                    final.style.color = "green";
+                } else if ( computer == 5 ) {
+                    final.innerHTML = "You Lose :(";
+                    final.style.color = "red";
+                }
             }
         });
     });
-
-
-
-
-
-    // determine winner
-//    if (player > computer) {
-//        console.log("You Win!");
-//    } else if (computer > player) {
-//        console.log("Computer Wins!");
-//    } else {
-//        console.log("It's a draw.");
-//    }
-//    console.log(`You ${player} : Computer ${computer}`);
 }
+
 
 game();

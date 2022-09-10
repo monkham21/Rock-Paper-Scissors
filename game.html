@@ -5,20 +5,55 @@
     <title>Rock Paper Scissor</title>
     <script src="game.js"></script>
     <style>
-        h1, button {
+        h1, button, h2, p {
             font-family: "Monaco", Monospace;
+            text-align: center;
         }
         button {
             width: 100px;
             height: 70px;
             font-size:20px;
+            color: purple;
+        }
+        .grid-container {
+            padding: 30px;
+            margin-left: 30%;
+            margin-right: 30%;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 10px;
+        }
+        .results {
+            padding: 50px;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-gap: 10px;
+        }
+        .results > div {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <h1>Rock, Paper or Scissor ?</h1>
-    <button data-choice="rock" style="color: blue;">Rock</button>
-    <button data-choice="paper" style="color: red;">Paper</button>
-    <button data-choice="scissor" style="color: green;">Scissor</button>
+    <h1>Rock Paper Scissor ?</h1>
+    <p>Whoever gets 5 scores first wins.</p>
+    <div class="grid-container">
+        <button data-choice="rock">Rock</button>
+        <button data-choice="paper">Paper</button>
+        <button data-choice="scissor">Scissor</button>
+    </div>
+    <p style="font-size: 25px;" id="announce"></p>
+    <p style="font-size: 25px;" id="final"></p>
+    <div class="results">
+        <div id="player">
+            <h2>Player</h2>
+            <h2 id="player-score">0</h2>
+        </div>
+        <div id="computer">
+            <h2>Computer</h2>
+            <h2 id="computer-score">0</h2>
+        </div>
+    </div>
+
 </body>
 </html>
